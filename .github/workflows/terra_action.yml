@@ -8,12 +8,58 @@ on:
 
 jobs:
   terraform:
+    name: Terraform
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
     runs-on: ubuntu-latest
+    environment: production
+
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Setup Terraform
-        uses: hashicorp
+      - name: 'Terraform Format'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.14.8
+          tf_actions_subcommand: 'fmt'
+          tf_actions_working_dir: "./terraform"
+         
+      - name: 'Terraform Init'
+        uses: hashicrop/terraform-github-actions@master
+        with: 
+          tf_actions_version: 0.14.8
+          tf_actions_subcommand: 'init'
+          tf_actions_working_dir: "./terraform"    
+
+      - name: Terraform Validte
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.14.8
+          tf_actions_subcommand: 'validate'
+          tf_actions_working_dir: "./terraform"
+      
+      - name: Terraform Plan
+        uses: hashicrop/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.14.8
+          tf_actions_subcomand: 'plan'
+          tf_actions_working_dir: "./terraform"  
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
+        uses: hashicorp/terrform-github-actino@master
+        with:
+          tf_actions_version: 0.14.8
+          tf_actions_subcommand: 'apply'
+          tf_actions_working_dir: "./terraform"
+        
 
