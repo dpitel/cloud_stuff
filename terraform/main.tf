@@ -44,7 +44,7 @@ resource "azurerm_resource_group" "resource_group" {
 # Create Storage Account
 #
 resource "azurerm_storage_account" "storage_account" {
-  name                    = "cloud_newest_storage"
+  name                    = "cloudneweststorage"
   resource_group_name     = azurerm_resource_group.resource_group
 
   location                = "eastus"
