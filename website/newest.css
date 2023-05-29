@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: #ff149f;
+}
+
+main {
+    display: block;
+    background-image: url("pex_2.jpg");
+}
