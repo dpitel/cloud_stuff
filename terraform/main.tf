@@ -65,7 +65,7 @@ resource "azurerm_storage_blob" "index_html" {
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = "$web"
   type                   = "Block"
-  content_type           = "test/html"
+  content_type           = "text/html"
   source_content         = file("./website/index.html") #("$(path.module)/website/index.html")   
 }
 
