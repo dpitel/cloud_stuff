@@ -52,7 +52,7 @@ resource "azurerm_storage_account" "storage_account" {
   account_replication_type= "LRS"
   account_kind            = "StorageV2"
 
-  static-website {
+  static_website {
     index_document = "index.html"
   } 
 }
