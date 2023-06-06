@@ -12,7 +12,7 @@ variable "storage_account_name" {
 
 variable "azure_dns_zone" {
   type    = string
-  default = "clouddnszone"
+  default = "cloud.dnszone.test"
 }
 
 variable "location" {
