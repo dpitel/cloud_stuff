@@ -22,7 +22,7 @@ variable "location" {
 
 variable "cdn_profile_name" {
   type    = string
-  default = "cloud_newest_cdn_profile"
+  default = "cloudcdnprofile"
 }
 
 variable "cdn_endpoint" {
