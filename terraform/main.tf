@@ -117,3 +117,4 @@ resource "azurerm_dns_cname_record" "cname_record" {
   ttl                   = 300
   record                = "www" 
 }
+
