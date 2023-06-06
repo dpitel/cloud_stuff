@@ -27,7 +27,7 @@ variable "cdn_profile_name" {
 
 variable "cdn_endpoint" {
   type    = string
-  default = "cloud_newest_cdn_endpoint"
+  default = "cloudcdnendpoint"
 }
 
 variable "origin_server" {
