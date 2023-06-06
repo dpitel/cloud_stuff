@@ -44,3 +44,4 @@ variable "azurerm_dns_cname" {
   type    = string
   default = "pitels-cloud.xyz"  
 }
+
