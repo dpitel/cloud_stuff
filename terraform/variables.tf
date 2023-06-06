@@ -1,0 +1,46 @@
+# Variables
+
+variable "resource_group_name" {
+  type    = string
+  default = "cloud_newest"
+}
+
+variable "storage_account_name" {
+  type    = string
+  default = "cloudneweststorage"
+}
+
+variable "azure_dns_zone" {
+  type    = string
+  default = "cloud_dns_zone"
+}
+
+variable "location" {
+  type    = string
+  default = "eastus"
+}
+
+variable "cdn_profile_name" {
+  type    = string
+  default = "cloud_newest_cdn_profile"
+}
+
+variable "cdn_endpoint" {
+  type    = string
+  default = "cloud_newest_cdn_endpoint"
+}
+
+variable "origin_server" {
+  type    = string
+  default = "53023cdntest"
+}
+
+variable "hostname" {
+  type    = string
+  default = "cloudneweststorage.z13.web.core.windows.net"
+}
+
+variable "azurerm_dns_cname" {
+  type    = string
+  default = "pitels-cloud.xyz"  
+}

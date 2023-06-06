@@ -18,33 +18,19 @@ provider "azurerm" {
 }
 
 #
-# Variables
-#
-
-#variable "resource_group_name" {
-#  type    = string
-#  default = "cloud_newest"
-#}
-
-#variable "location" {
-#  type    = string
-#  default = "eastus"
-#}
-
-#
 # Resources
 #
 
 resource "azurerm_resource_group" "rg" {
-  name     = "cloud_newest"
-  location = "eastus"
+  name     = var.resource_group_name
+  location = var.location
 }
 
 #
 # Create Storage Account
 #
 resource "azurerm_storage_account" "storage_account" {
-  name                = "cloudneweststorage"
+  name                = var.storage_account_name
   resource_group_name = azurerm_resource_group.rg.name
 
   location                 = "eastus"
@@ -94,4 +80,40 @@ resource "azurerm_storage_blob" "newest" {
   type                   = "Block"
   content_type           = "text/css"
   source_content         = file("./website/newest.css") #("$(path.module)/website/newest.css")
+}
+
+#
+# Adding Azure CDN stuff to my site/tenant/setup
+#
+
+resource "azurerm_cdn_profile" "cdn_profile" {
+  name                = var.cdn_profile_name
+  location            = azurerm_resource_group.rg.location
+  sku                 = "Standard_Verizon"
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_cdn_endpoint" "cdn_endpoint" {
+  name                = var.cdn_endpoint
+  profile_name        = azurerm_cdn_profile.cdn_profile.name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  origin {
+    name      = var.origin_server
+    host_name = var.hostname
+  }
+}
+
+resource "azurerm_dns_zone" "zone" {
+  name                = var.azure_dns_zone
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+resource "azurerm_dns_cname_record" "cname_record" {
+  name                  = var.azurerm_dns_cname
+  zone_name             = var.azure_dns_zone
+  resource_group_name   = var.resource_group_name
+  ttl                   = 300
+  record                = "www" 
 }
