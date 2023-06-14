@@ -124,7 +124,7 @@ resource "azurerm_cdn_endpoint_custom_domain" "custom_domain" {
   host_name           = var.azurerm_dns_cname
   cdn_managed_https {
     certificate_type = "Dedicated"
-    protocol_type    = "ServeNameIndication"
+    protocol_type    = "ServerNameIndication"
     tls_version      = "TLS12" 
   }  
 }
