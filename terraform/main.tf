@@ -119,7 +119,7 @@ resource "azurerm_dns_cname_record" "cname_record" {
 }
 
 resource "azurerm_cdn_endpoint_custom_domain" "custom_domain" {
-  name                = "cloud.dnszone.test"
+  name                = "customdomain"
   cdn_endpoint_id     = azurerm_cdn_endpoint.cdn_endpoint.id
   host_name           = var.azurerm_dns_cname
   cdn_managed_https {
