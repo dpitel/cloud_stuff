@@ -118,3 +118,13 @@ resource "azurerm_dns_cname_record" "cname_record" {
   record                = "www" 
 }
 
+resource "azurerm_cdn_endpoint_custom_domain" "custom_domain" {
+  name                = var.azure_dns_zone
+  cdn_endpoint_id     = azurerm_cdn_endpoint.cdn_endpoint.id
+  host_name           = var.azurerm_dns_cname
+  cdn_managed_https {
+    certificate_type = "Dedicated"
+    protocol_type    = "ServeNameIndication"
+    tls_version      = "TLS12" 
+  }  
+}
