@@ -42,6 +42,6 @@ variable "hostname" {
 
 variable "azurerm_dns_cname" {
   type    = string
-  default = "pitels-cloud.xyz"  
+  default = "www.pitels-cloud.xyz"  
 }
 
