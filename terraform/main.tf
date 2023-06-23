@@ -105,10 +105,10 @@ resource "azurerm_cdn_endpoint" "cdn_endpoint" {
   }
 }
 
-#resource "azurerm_dns_zone" "zone" {
-#  name                = var.azure_dns_zone
-#  resource_group_name = azurerm_resource_group.rg.name
-#}
+resource "azurerm_dns_zone" "zone" {
+  name                = var.azure_dns_zone
+  resource_group_name = azurerm_resource_group.rg.name
+}
 
 resource "azurerm_dns_cname_record" "cname_record" {
   name                  = var.azurerm_dns_cname
