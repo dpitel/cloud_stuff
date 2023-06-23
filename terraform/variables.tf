@@ -12,7 +12,7 @@ variable "storage_account_name" {
 
 variable "azure_dns_zone" {
   type    = string
-  default = "cloud.dnszone.test"
+  default = "pitels-cloud.xyz"
 }
 
 variable "location" {
